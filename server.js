@@ -12,11 +12,12 @@ const client = new pg.Client({
 
 await client.connect();
 
+app.use(express.static("public"));
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/cbbs", (req, res) => {
     client
-        .query("SELECT * FROM posts")
+        .query("SELECT * FROM posts ORDER BY created_at DESC")
         .then((data) => {
             res.json(data.rows);
         })
