@@ -14,7 +14,6 @@ await client.connect();
 
 app.use(express.static("public"));
 app.use(express.json());
-
 app.get("/cbbs", (req, res) => {
     client
         .query("SELECT * FROM posts ORDER BY created_at DESC")
