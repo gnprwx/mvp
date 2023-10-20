@@ -10,8 +10,7 @@ async function getPosts() {
         posts.forEach((post) => {
             const p = document.createElement("p");
             const serverTimestamp = new Date(post.created_at);
-            const visitorTimestamp = new Date(serverTimestamp);
-            const formattedTimestamp = visitorTimestamp.toLocaleString("en-US");
+            const formattedTimestamp = serverTimestamp.toLocaleString("en-US");
             p.textContent = `${formattedTimestamp} | ${post.username} >> ${post.message}`;
             chat.appendChild(p);
         });
