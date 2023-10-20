@@ -72,7 +72,7 @@ body {
     font-family: "Fira Code", monospace;
     background-color: #111;
     color: lightgreen;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     height: 100dvh;
 }
 form {
@@ -83,6 +83,7 @@ form {
     color: lightgreen;
     resize: none;
     width: 100%;
+    font-size: 1.2rem;
     border: 1px solid green;
 }
 #chat-input::placeholder {
