@@ -1,0 +1,75 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+:focus {
+    outline: none;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+a {
+    color: #007bff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+body {
+    font-family: "Fira Code", monospace;
+}
+
+#chat-input{
+    width: 100%;
+    resize: none;
+}

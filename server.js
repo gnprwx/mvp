@@ -16,13 +16,17 @@ app.use(express.static("public"));
 app.use(express.json());
 app.get("/cbbs", (req, res) => {
     client
-        .query("SELECT * FROM posts ORDER BY created_at DESC")
+        .query("SELECT * FROM posts ORDER BY id DESC")
         .then((data) => {
             res.json(data.rows);
         })
         .catch((err) => {
             console.error(err);
         });
+});
+
+app.post("/cbbs", (req, res) => {
+    res.send(req.body);
 });
 
 app.listen(PORT, () => {
