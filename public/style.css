@@ -114,6 +114,9 @@ form,
 #chatBox {
     width: 100%;
 }
+#userName {
+    font-weight: bold;
+}
 @media (max-width: 900px) {
     form,
     #chat {

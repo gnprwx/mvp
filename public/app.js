@@ -17,7 +17,8 @@ async function getPosts() {
                 });
                 const userDay = localTime.slice(0, 10);
                 const userTime = localTime.slice(14);
-                const userPost = `${post.username} >> ${post.message}`;
+                const userName = post.username;
+                const userMessage = ` >> ${post.message}`;
                 return `
             <div id ='box'>
                 <div id ='timeBox'>
@@ -25,7 +26,7 @@ async function getPosts() {
                     <p>${userTime}</p>
                 </div>
                 <div id ='chatBox'>
-                    <p>${userPost}</p>
+                    <p>${randomUserColor(userName)}${userMessage}</p>
                 </div>
             </div>
             `;
@@ -72,4 +73,32 @@ async function postSubmission() {
     }
     chatForm.value = "";
     getPosts();
+}
+
+function randomUserColor(user) {
+    const savedColor = localStorage.getItem(user);
+    if (savedColor) {
+        return `<span id='userName' style='color: ${savedColor}'>${user}</span>`;
+    }
+    const colors = [
+        "firebrick",
+        "orangered",
+        "lightcoral",
+        "orange",
+        "gold",
+        "khaki",
+        "papayawhip",
+        "mediumseagreen",
+        "skyblue",
+        "lightblue",
+        "mediumorchid",
+        "plum",
+        "lavender",
+        "sienna",
+        "tan",
+        "whitesmoke",
+    ];
+    const randomNum = Math.floor(Math.random() * colors.length);
+    localStorage.setItem(user, colors[randomNum]);
+    return `<span id='userName' style='color: ${colors[randomNum]}'>${user}</span>`;
 }
