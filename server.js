@@ -26,7 +26,13 @@ app.get("/cbbs", (req, res) => {
 });
 
 app.post("/cbbs", (req, res) => {
-    console.log(req.body);
+    const { user, message } = req.body;
+    client.query(
+        `INSERT INTO posts (username, message, created_at)
+    VALUES ($1, $2, CURRENT_TIMESTAMP)`,
+        [user, message]
+    );
+    res.sendStatus(201);
 });
 
 app.listen(PORT, () => {
