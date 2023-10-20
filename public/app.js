@@ -7,25 +7,31 @@ async function getPosts() {
         const response = await fetch("/cbbs");
         const posts = await response.json();
         chat.innerHTML = "";
-        posts.forEach((post) => {
-            const p = document.createElement("p");
-            const serverTimestamp = new Date(post.created_at);
-            const formattedTimestamp = serverTimestamp.toLocaleString("en-US");
-            p.textContent = `${formattedTimestamp} | ${post.username} >> ${post.message}`;
-            chat.appendChild(p);
-        });
+        chat.innerHTML = posts
+            .map((post) => {
+                const serverTime = new Date(post.created_at);
+                const localTime = serverTime.toLocaleString("en-US");
+                const userTime = localTime.slice(11);
+                const userDay = localTime.slice(0, 10);
+                const userPost = `${post.username} >> ${post.message}`;
+                return `
+            <div id ='box'>
+                <div id ='timeBox'>
+                    <p>${userDay}</p>
+                    <p>${userTime}</p>
+                </div>
+                <div id ='chatBox'>
+                    <p>${userPost}</p>
+                </div>
+            </div>
+            `;
+            })
+            .join("");
     } catch (err) {
         console.error(err);
     }
 }
 getPosts();
-
-/* submitForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (chatForm.value.trim() !== "") {
-        postSubmission();
-    }
-}); */
 
 chatForm.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey && chatForm.value.trim() !== "") {

@@ -90,11 +90,20 @@ form {
     opacity: 1;
 }
 #chat {
+    border: 1px solid green;
     overflow-y: scroll;
     width: 75%;
 }
-#submitBtn {
-    background-color: #111;
-    color: lightgreen;
+#box {
+    display: flex;
     border: 1px solid green;
+}
+#box > * {
+    padding: 10px;
+}
+#timeBox {
+    background-color: rgba(0, 100, 0, 0.425);
+}
+#timeBox p {
+    margin: 0;
 }
