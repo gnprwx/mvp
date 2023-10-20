@@ -26,7 +26,7 @@ app.get("/cbbs", (req, res) => {
 });
 
 app.post("/cbbs", (req, res) => {
-    res.send(req.body);
+    console.log(req.body);
 });
 
 app.listen(PORT, () => {

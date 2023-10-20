@@ -22,14 +22,27 @@ fetch("/cbbs")
 
 submitForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const input = chatForm.value.trim();
-    console.log(input);
+    postSubmission();
 });
 
 chatForm.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
-        const input = chatForm.value.trim();
-        console.log(input);
+        postSubmission();
     }
 });
+
+async function postSubmission() {
+    const message = chatForm.value.trim();
+    try {
+        await fetch("/cbbs", {
+            method: "POST",
+            body: JSON.stringify({ message }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    } catch (err) {
+        console.error(err);
+    }
+}
