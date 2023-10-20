@@ -1,4 +1,9 @@
 # MVP Project
 
 ## What is it?
-See it in action here while it's being built: [chaos bbs](https://chaos-bbs.onrender.com/)
+
+See it in action here while it's being built: [null bbs](https://nbbs.onrender.com/)
+
+## To do
+
+-   [ ] Add cool logo
