@@ -128,3 +128,20 @@ form,
         word-break: break-all;
     }
 }
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #c0c6c0;
+        color: #004214;
+    }
+    #timeBox {
+        background-color: rgba(0, 128, 0, 0.241);
+    }
+    #chat-input {
+        background-color: #e7e7e7;
+        color: #004214;
+    }
+    #userName {
+        text-shadow: 1px 1px 0 black;
+    }
+}
