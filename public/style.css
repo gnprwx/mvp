@@ -66,10 +66,34 @@ p {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: "Fira Code", monospace;
+    background-color: #111;
+    color: lightgreen;
+    font-size: 1.3rem;
+    height: 100dvh;
 }
-
-#chat-input{
-    width: 100%;
+form {
+    width: 75%;
+}
+#chat-input {
+    background-color: #111;
+    color: lightgreen;
     resize: none;
+    width: 100%;
+    border: 1px solid green;
+}
+#chat-input::placeholder {
+    opacity: 1;
+}
+#chat {
+    overflow-y: scroll;
+    width: 75%;
+}
+#submitBtn {
+    background-color: #111;
+    color: lightgreen;
+    border: 1px solid green;
 }

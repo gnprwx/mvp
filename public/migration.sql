@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS posts;
 
 CREATE TABLE posts(
-    id SERIAL,
-    username TEXT,
-    message TEXT,
-    created_at TIMESTAMP
+    id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL
 );

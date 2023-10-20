@@ -16,7 +16,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.get("/cbbs", (req, res) => {
     client
-        .query("SELECT * FROM posts ORDER BY id DESC")
+        .query("SELECT * FROM posts ORDER BY id DESC LIMIT 100")
         .then((data) => {
             res.json(data.rows);
         })
