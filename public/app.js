@@ -1,6 +1,5 @@
 const chat = document.querySelector("#chat");
 const chatForm = document.querySelector("#chat-input");
-const submitForm = document.querySelector("form");
 
 async function getPosts() {
     try {
@@ -10,9 +9,14 @@ async function getPosts() {
         chat.innerHTML = posts
             .map((post) => {
                 const serverTime = new Date(post.created_at);
-                const localTime = serverTime.toLocaleString("en-US");
-                const userTime = localTime.slice(11);
+                const localTime = serverTime.toLocaleString("en-US", {
+                    day: "2-digit",
+                    month: "long",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                });
                 const userDay = localTime.slice(0, 10);
+                const userTime = localTime.slice(14);
                 const userPost = `${post.username} >> ${post.message}`;
                 return `
             <div id ='box'>
@@ -39,10 +43,14 @@ chatForm.addEventListener("keydown", (e) => {
         postSubmission();
     }
 });
+async function getRandomUser() {
+    const response = await fetch("https://randomuser.me/api/");
+    const data = await response.json();
+    const user = data.results[0].login.username;
+    return user;
+}
 
-const response = await fetch("https://randomuser.me/api/");
-const data = await response.json();
-const user = data.results[0].login.username;
+const user = await getRandomUser();
 
 chatForm.placeholder = `say something, ${user}...`;
 

@@ -75,8 +75,9 @@ body {
     font-size: 1.2rem;
     height: 100dvh;
 }
-form {
-    width: 75%;
+form,
+#chat {
+    width: 70%;
 }
 #chat-input {
     background-color: #111;
@@ -90,20 +91,37 @@ form {
     opacity: 1;
 }
 #chat {
-    border: 1px solid green;
     overflow-y: scroll;
-    width: 75%;
+    border-top: 1px solid green;
 }
 #box {
     display: flex;
-    border: 1px solid green;
+    border-bottom: 1px solid green;
+    flex-shrink: 0;
 }
 #box > * {
     padding: 10px;
 }
 #timeBox {
     background-color: rgba(0, 100, 0, 0.425);
+    width: 200px;
+    text-align: right;
+    border-right: 1px solid green;
 }
 #timeBox p {
     margin: 0;
+}
+#chatBox {
+    width: 100%;
+}
+@media (max-width: 900px) {
+    form,
+    #chat {
+        width: 100%;
+    }
+}
+@media (max-width: 450px) {
+    #chatBox {
+        word-break: break-all;
+    }
 }
