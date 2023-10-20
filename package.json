@@ -1,14 +1,13 @@
 {
     "name": "mvp",
     "version": "1.0.0",
-    "description": "",
+    "description": "bulletin board system",
     "type": "module",
-    "main": "index.js",
     "scripts": {
         "dev": "node --watch server.js",
         "build": "node server.js"
     },
-    "author": "",
+    "author": "greg pappas",
     "license": "ISC",
     "dependencies": {
         "dotenv": "^16.3.1",
