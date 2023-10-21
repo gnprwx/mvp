@@ -70,7 +70,7 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: "Fira Code", monospace;
-    background-color: #111;
+    background-color: #222;
     color: lightgreen;
     font-size: 1.2rem;
     height: 100dvh;
@@ -80,7 +80,7 @@ form,
     width: 70%;
 }
 #chat-input {
-    background-color: #111;
+    background-color: #222;
     color: lightgreen;
     resize: none;
     width: 100%;
@@ -116,6 +116,7 @@ form,
 }
 #userName {
     font-weight: bold;
+    letter-spacing: 0.1rem;
 }
 @media (max-width: 900px) {
     form,
@@ -131,17 +132,17 @@ form,
 
 @media (prefers-color-scheme: light) {
     body {
-        background-color: #c0c6c0;
-        color: #004214;
+        background-color: #d5dce0;
+        color: #262626;
     }
     #timeBox {
-        background-color: rgba(0, 128, 0, 0.241);
+        background-color: rgba(0, 102, 128, 0.241);
     }
     #chat-input {
         background-color: #e7e7e7;
-        color: #004214;
+        color: #262626;
     }
     #userName {
-        text-shadow: 1px 1px 0 black;
+        text-shadow: 0.9px 0.9px 0px black;
     }
 }
