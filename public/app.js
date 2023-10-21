@@ -1,5 +1,3 @@
-// import BadWordsFilter from "../bad-words.js"; gets confused for html MIME type. find fix
-
 const chat = document.querySelector("#chat");
 const chatForm = document.querySelector("#chat-input");
 getPosts();
@@ -49,7 +47,7 @@ async function getPosts() {
 }
 
 async function postSubmission() {
-    const message = chatForm.value.trim(); //add filter.clean here when badwords is fixed.
+    const message = chatForm.value.trim();
     try {
         await fetch("/cbbs", {
             method: "POST",
