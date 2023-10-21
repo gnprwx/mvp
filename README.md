@@ -6,4 +6,5 @@ See it in action here while it's being built: [null bbs](https://nbbs.onrender.c
 
 ## To do
 
--   [ ] Add cool logo
+-   [x] Add cool logo
+-   [ ] Craft admin page to handle posts
