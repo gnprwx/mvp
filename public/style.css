@@ -73,7 +73,7 @@ body {
     background-color: #222;
     color: lightgreen;
     font-size: 1.2rem;
-    height: 100dvh;
+    height: 100vh;
 }
 form,
 #chat {
@@ -173,5 +173,13 @@ form,
     }
     #logo {
         width: 100%;
+    }
+}
+@media (max-width: 500px) {
+    body {
+        font-size: 1rem;
+    }
+    #timeBox {
+        width: 165px;
     }
 }
