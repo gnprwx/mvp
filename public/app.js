@@ -1,6 +1,15 @@
 const chat = document.querySelector("#chat");
 const chatForm = document.querySelector("#chat-input");
 
+getPosts();
+
+chatForm.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey && chatForm.value.trim() !== "") {
+        e.preventDefault();
+        postSubmission();
+    }
+});
+
 async function getPosts() {
     try {
         const response = await fetch("/cbbs");
@@ -36,24 +45,6 @@ async function getPosts() {
         console.error(err);
     }
 }
-getPosts();
-
-chatForm.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey && chatForm.value.trim() !== "") {
-        e.preventDefault();
-        postSubmission();
-    }
-});
-async function getRandomUser() {
-    const response = await fetch("https://randomuser.me/api/");
-    const data = await response.json();
-    const user = data.results[0].login.username;
-    return user;
-}
-
-const user = await getRandomUser();
-
-chatForm.placeholder = `say something, ${user}...`;
 
 async function postSubmission() {
     const message = chatForm.value.trim();
@@ -74,6 +65,17 @@ async function postSubmission() {
     chatForm.value = "";
     getPosts();
 }
+
+async function getRandomUser() {
+    const response = await fetch("https://randomuser.me/api/");
+    const data = await response.json();
+    const user = data.results[0].login.username;
+    return user;
+}
+
+const user = await getRandomUser();
+
+chatForm.placeholder = `say something, ${user}...`;
 
 function randomUserColor(user) {
     const savedColor = localStorage.getItem(user);
