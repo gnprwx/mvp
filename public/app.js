@@ -15,32 +15,35 @@ async function getPosts() {
         const response = await fetch("/cbbs");
         const posts = await response.json();
         chat.innerHTML = "";
-        chat.innerHTML = posts
-            .map((post) => {
-                const serverTime = new Date(post.created_at);
-                const localTime = serverTime.toLocaleString("en-US", {
-                    day: "2-digit",
-                    month: "long",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                });
-                const userDay = localTime.slice(0, 10);
-                const userTime = localTime.slice(14);
-                const userName = post.username;
-                const userMessage = ` > ${sanitizeHTML(post.message)}`;
-                return `
-            <div id ='box'>
-                <div id ='timeBox'>
-                    <p>${userDay}</p>
-                    <p>${userTime}</p>
-                </div>
-                <div id ='chatBox'>
-                    <p>${randomUserColor(userName)}${userMessage}</p>
-                </div>
-            </div>
-            `;
-            })
-            .join("");
+        posts.forEach((post) => {
+            const serverTime = new Date(post.created_at);
+            const localTime = serverTime.toLocaleString("en-US");
+            const [date, time] = localTime.split(",");
+            const userName = post.username;
+            const userMessage = ` > ${post.message}`;
+
+            const box = document.createElement("div");
+            box.id = "box";
+
+            const timeBox = document.createElement("div");
+            timeBox.id = "timeBox";
+            timeBox.textContent = `${date} ${time}`;
+
+            const chatBox = document.createElement("div");
+            chatBox.id = "chatBox";
+
+            const user = document.createElement("span");
+            user.innerHTML = `${randomUserColor(userName)}`;
+
+            const message = document.createElement("span");
+            message.textContent = userMessage;
+
+            chatBox.appendChild(user);
+            chatBox.appendChild(message);
+            box.appendChild(timeBox);
+            box.appendChild(chatBox);
+            chat.appendChild(box);
+        });
     } catch (err) {
         console.error(err);
     }
@@ -97,9 +100,4 @@ function randomUserColor(user) {
     const randomNum = Math.floor(Math.random() * colors.length);
     localStorage.setItem(user, colors[randomNum]);
     return `<span id='userName' style='color: ${colors[randomNum]}'>${user}</span>`;
-}
-function sanitizeHTML(text) {
-    const element = document.createElement("div");
-    element.innerText = text;
-    return element.innerHTML;
 }
