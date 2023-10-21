@@ -19,8 +19,6 @@ async function getPosts() {
             const serverTime = new Date(post.created_at);
             const localTime = serverTime.toLocaleString("en-US");
             const [date, time] = localTime.split(",");
-            const userName = post.username;
-            const userMessage = ` > ${post.message}`;
 
             const box = document.createElement("div");
             box.id = "box";
@@ -33,10 +31,10 @@ async function getPosts() {
             chatBox.id = "chatBox";
 
             const user = document.createElement("span");
-            user.innerHTML = `${randomUserColor(userName)}`;
+            user.innerHTML = `${randomUserColor(post.username)}`;
 
             const message = document.createElement("span");
-            message.textContent = userMessage;
+            message.textContent = ` > ${post.message}`;
 
             chatBox.appendChild(user);
             chatBox.appendChild(message);
