@@ -18,7 +18,7 @@ async function getPosts() {
                 const userDay = localTime.slice(0, 10);
                 const userTime = localTime.slice(14);
                 const userName = post.username;
-                const userMessage = ` >> ${sanitizeHTML(post.message)}`;
+                const userMessage = ` > ${sanitizeHTML(post.message)}`;
                 return `
             <div id ='box'>
                 <div id ='timeBox'>
@@ -96,7 +96,6 @@ function randomUserColor(user) {
     localStorage.setItem(user, colors[randomNum]);
     return `<span id='userName' style='color: ${colors[randomNum]}'>${user}</span>`;
 }
-localStorage.clear();
 function sanitizeHTML(text) {
     const element = document.createElement("div");
     element.innerText = text;
