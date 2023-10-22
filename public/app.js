@@ -93,16 +93,15 @@ function randomUserColor(user) {
         return `<span id='userName' style='color: ${savedColor}'>${user}</span>`;
     }
     const colors = [
-        "#FFAB0F", //yellow
-        "#247AFD", //blue
-        "#FE46A5", //pink
-        "#FF073A", //red
-        "#32BF84", //green
-        "#BE03FD", //purple
-        "#CEA2FD", //light purple
-        "#F19E8E", //blush
-        "#3E82FC", //nice blue
-        "#F8481C", //red orange
+        "#FFFFFF", // White
+        "#FFFF00", // Yellow
+        "#FFD700", // Gold
+        "#FF8C00", // Dark Orange
+        "#FF4500", // Orange Red
+        "#FF0000", // Red
+        "#FF1493", // Deep Pink
+        "#FF00FF", // Magenta
+        "#DA70D6", // Orchid
     ];
     const randomNum = Math.floor(Math.random() * colors.length);
     localStorage.setItem(user, colors[randomNum]);
