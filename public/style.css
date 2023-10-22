@@ -75,17 +75,25 @@ body {
     font-size: 1.2rem;
     height: 100vh;
 }
+fieldset {
+    border: 1px solid green;
+}
 form,
 #chat {
+    width: 100%;
+}
+fieldset,
+#chat {
     width: 70%;
+    margin: 0;
 }
 #chat-input {
-    background-color: #222;
+    background-color: rgba(0, 128, 0, 0.279);
     color: lightgreen;
     resize: none;
     width: 100%;
     font-size: 1.2rem;
-    border: 1px solid green;
+    border: 0.5px solid green;
 }
 #chat-input::placeholder {
     opacity: 1;
@@ -94,7 +102,6 @@ form,
 }
 #chat {
     overflow-y: scroll;
-    border-top: 1px solid green;
 }
 .box {
     display: flex;
@@ -109,19 +116,22 @@ form,
     width: 200px;
     text-align: right;
     border-right: 1px solid green;
+    border-left: 1px solid green;
 }
 .timeBox p {
     margin: 0;
 }
 .chatBox {
     width: 100%;
+    background-color: #19371d;
+    border-right: 1px solid green;
 }
 #userName {
     font-weight: bold;
     letter-spacing: 0.1rem;
 }
 #logo {
-    width: 70%;
+    width: 100%;
 }
 
 /* For WebKit-based browsers (Chrome, Safari) */
@@ -130,7 +140,7 @@ form,
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(0, 128, 0, 0.477);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -155,7 +165,7 @@ form,
 }
 
 *::-ms-scrollbar-thumb {
-    background-color: #888;
+    background: lightgreen;
 }
 
 *::-ms-scrollbar-thumb:hover {
@@ -163,14 +173,12 @@ form,
 }
 
 *::-ms-scrollbar-track {
-    background-color: transparent;
+    background: rgba(0, 128, 0, 0.477);
 }
 
 @media (max-width: 900px) {
-    form,
-    #chat {
-        width: 100%;
-    }
+    fieldset,
+    #chat,
     #logo {
         width: 100%;
     }
