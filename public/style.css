@@ -96,24 +96,24 @@ form,
     overflow-y: scroll;
     border-top: 1px solid green;
 }
-#box {
+.box {
     display: flex;
     border-bottom: 1px solid green;
     flex-shrink: 0;
 }
-#box > * {
+.box > * {
     padding: 10px;
 }
-#timeBox {
+.timeBox {
     background-color: rgba(0, 100, 0, 0.425);
     width: 200px;
     text-align: right;
     border-right: 1px solid green;
 }
-#timeBox p {
+.timeBox p {
     margin: 0;
 }
-#chatBox {
+.chatBox {
     width: 100%;
 }
 #userName {

@@ -26,13 +26,31 @@ app.get("/cbbs", (req, res) => {
 });
 
 app.post("/cbbs", (req, res) => {
-    const { user, message } = req.body;
-    client.query(
-        `INSERT INTO posts (username, message, created_at)
+    const { currentUser, message } = req.body;
+    client
+        .query(
+            `INSERT INTO posts (username, message, created_at)
     VALUES ($1, $2, CURRENT_TIMESTAMP)`,
-        [user, message]
-    );
-    res.sendStatus(201);
+            [currentUser, message]
+        )
+        .then((data) => {
+            return res.sendStatus(202);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+});
+
+app.delete("/cbbs/:id", (req, res) => {
+    const index = req.params.id;
+    client
+        .query(`DELETE FROM posts WHERE id=$1`, [index])
+        .then((data) => {
+            res.sendStatus(204);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
 });
 
 app.listen(PORT, () => {
