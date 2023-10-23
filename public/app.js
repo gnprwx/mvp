@@ -79,8 +79,9 @@ async function postSubmission() {
 async function getRandomUser() {
     const response = await fetch("https://randomuser.me/api/");
     const data = await response.json();
-    const user = data.results[0].login.username;
-    return user;
+    const prefixName = data.results[0].login.username.slice(0, -3);
+    const suffixName = data.results[0].login.salt.slice(0, 5);
+    return prefixName + "_" + suffixName;
 }
 
 const currentUser = await getRandomUser();
