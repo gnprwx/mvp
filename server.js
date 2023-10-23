@@ -14,43 +14,49 @@ await client.connect();
 
 app.use(express.static("public"));
 app.use(express.json());
-app.get("/cbbs", (req, res) => {
-    client
-        .query("SELECT * FROM posts ORDER BY id DESC LIMIT 100")
-        .then((data) => {
-            res.json(data.rows);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-});
 
-app.post("/cbbs", (req, res) => {
-    const { currentUser, message } = req.body;
-    client
-        .query(
+app.get("/cbbs", getAllPosts);
+app.post("/cbbs", submitPost);
+app.delete("/cbbs/:id", deletePost);
+
+async function getAllPosts(req, res, next) {
+    try {
+        const posts = await client.query(
+            "SELECT * FROM posts ORDER BY id DESC LIMIT 100"
+        );
+        res.json(posts.rows);
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function submitPost(req, res, next) {
+    try {
+        const { currentUser, message } = req.body;
+        await client.query(
             `INSERT INTO posts (username, message, created_at)
-    VALUES ($1, $2, CURRENT_TIMESTAMP)`,
+        VALUES ($1, $2, CURRENT_TIMESTAMP)`,
             [currentUser, message]
-        )
-        .then((data) => {
-            return res.sendStatus(202);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-});
+        );
+        res.sendStatus(202);
+    } catch (err) {
+        next(err);
+    }
+}
 
-app.delete("/cbbs/:id", (req, res) => {
-    const index = req.params.id;
-    client
-        .query(`DELETE FROM posts WHERE id=$1`, [index])
-        .then((data) => {
-            res.sendStatus(204);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+async function deletePost(req, res, next) {
+    try {
+        const index = req.params.id;
+        await client.query(`DELETE FROM posts WHERE id=$1`, [index]);
+        res.sendStatus(204);
+    } catch (err) {
+        next(err);
+    }
+}
+
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.sendStatus("500");
 });
 
 app.listen(PORT, () => {

@@ -1,7 +1,10 @@
 const chat = document.querySelector("#chat");
 const chatForm = document.querySelector("#chat-input");
+const currentUser = await getRandomUser();
+
 getPosts();
 
+chatForm.placeholder = `type and press enter, ${currentUser.slice(0, -6)}`;
 chatForm.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey && chatForm.value.trim() !== "") {
         e.preventDefault();
@@ -34,25 +37,32 @@ async function getPosts() {
             chatBox.appendChild(username);
             chatBox.appendChild(message);
 
-            const box = document.createElement("div");
-            box.classList.add("box");
-            box.appendChild(timeBox);
-            box.appendChild(chatBox);
+            const postEntry = document.createElement("div");
+            postEntry.classList.add("postEntry");
+            postEntry.appendChild(timeBox);
+            postEntry.appendChild(chatBox);
+            deleteEventListener(post, postEntry);
 
-            chat.appendChild(box);
-            box.addEventListener("click", () => {
-                if (post.username === currentUser) {
-                    fetch(`/cbbs/${post.id}`, {
-                        method: "DELETE",
-                    }).then(() => {
-                        chat.removeChild(box);
-                    });
-                }
-            });
+            chat.appendChild(postEntry);
         });
     } catch (err) {
-        console.error(err);
+        chatForm.placeholder = "Something went wrong. Check back later. ;(";
     }
+}
+
+async function deleteEventListener(post, postEntry) {
+    postEntry.addEventListener("click", async () => {
+        if (post.username === currentUser) {
+            try {
+                await fetch(`/cbbs/${post.id}`, {
+                    method: "DELETE",
+                });
+                chat.removeChild(postEntry);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    });
 }
 
 async function postSubmission() {
@@ -72,21 +82,16 @@ async function postSubmission() {
         console.error(err);
     }
     chatForm.value = "";
-    const delBtn = document.createElement("button");
     getPosts();
 }
 
 async function getRandomUser() {
     const response = await fetch("https://randomuser.me/api/");
     const data = await response.json();
-    const prefixName = data.results[0].login.username.slice(0, -3);
-    const suffixName = data.results[0].login.salt.slice(0, 5);
-    return prefixName + "_" + suffixName;
+    const handle = data.results[0].login.username.slice(0, -3);
+    const salt = data.results[0].login.salt.slice(0, 5);
+    return handle + "_" + salt;
 }
-
-const currentUser = await getRandomUser();
-
-chatForm.placeholder = `say something, ${currentUser}...`;
 
 function randomUserColor(user) {
     const savedColor = localStorage.getItem(user);
@@ -94,6 +99,7 @@ function randomUserColor(user) {
         return `<span id='userName' style='color: ${savedColor}'>${user}</span>`;
     }
     const colors = [
+        // AAA a11y colors
         "#FFFFFF", // White
         "#FFFF00", // Yellow
         "#FFD700", // Gold

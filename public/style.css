@@ -96,12 +96,12 @@ fieldset,
 #chat {
     overflow-y: scroll;
 }
-.box {
+.postEntry {
     display: flex;
     border-bottom: 1px solid green;
     flex-shrink: 0;
 }
-.box > * {
+.postEntry > * {
     padding: 10px;
 }
 .timeBox {
@@ -177,7 +177,8 @@ fieldset,
     }
 }
 @media (max-width: 500px) {
-    body {
+    body,
+    #chat-input {
         font-size: 1rem;
     }
     .timeBox {
