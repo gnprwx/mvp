@@ -26,7 +26,7 @@ async function getPosts() {
             username.innerHTML = `${randomUserColor(post.username)}`;
 
             const message = document.createElement("span");
-            message.textContent = ` > ${post.message}`;
+            message.textContent = post.message;
 
             const timeBox = document.createElement("div");
             timeBox.classList.add("timeBox");
@@ -96,7 +96,7 @@ async function getRandomUser() {
 function randomUserColor(user) {
     const savedColor = localStorage.getItem(user);
     if (savedColor) {
-        return `<span id='userName' style='color: ${savedColor}'>${user}</span>`;
+        return `<span id='userName' style='color: ${savedColor}'>${user}: </span>`;
     }
     const colors = [
         // AAA a11y colors
@@ -112,5 +112,5 @@ function randomUserColor(user) {
     ];
     const randomNum = Math.floor(Math.random() * colors.length);
     localStorage.setItem(user, colors[randomNum]);
-    return `<span id='userName' style='color: ${colors[randomNum]}'>${user}</span>`;
+    return `<span id='userName' style='color: ${colors[randomNum]}'>${user}: </span>`;
 }
