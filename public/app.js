@@ -5,7 +5,7 @@ const currentUser = await getRandomUser();
 
 getPosts();
 
-yourUsername.innerHTML = randomUserColor(currentUser.slice(0));
+yourUsername.innerHTML = `${randomUserColor(currentUser)} i am your assigned username!`;
 
 async function getPosts() {
     try {
@@ -147,7 +147,7 @@ async function getRandomUser() {
 function randomUserColor(user) {
     const savedColor = localStorage.getItem(user);
     if (savedColor) {
-        return `<span id='userName' style='color: ${savedColor}'>${user}: </span>`;
+        return `<span id='userName' style='color: ${savedColor}'>${user}</span>`;
     }
     const colors = [
         // AAA a11y colors
@@ -163,5 +163,5 @@ function randomUserColor(user) {
     ];
     const randomNum = Math.floor(Math.random() * colors.length);
     localStorage.setItem(user, colors[randomNum]);
-    return `<span id='userName' style='color: ${colors[randomNum]}'>${user}: </span>`;
+    return `<span id='userName' style='color: ${colors[randomNum]}'>${user}</span>`;
 }

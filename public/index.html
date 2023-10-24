@@ -17,12 +17,21 @@
     <fieldset>
         <legend>null message board</legend>
         <img src="./logo.jpg" alt="nbbs logo" id="logo">
-        <p id="yourUsername"></p>
-        <form>
-            <textarea name="chat-input" id="chat-input" cols="30" rows="2" placeholder="type then press enter"></textarea>
-        </form>
-        <p style="font-size: 0.9rem; margin-bottom: -8px; text-align: center;">click on your post(s) to edit or
-            double-click to delete. </p>
+        <details>
+            <summary>Info</summary>
+            <fieldset style="width: 100%;">
+                <ul style="font-size:medium;">
+                    <li id="yourUsername"></li>
+                    <li>click your post(s) to edit or double-click to delete.</li>
+                </ul>
+            </fieldset>
+        </details>
+        <fieldset style="width: 100%;">
+            <legend>message</legend>
+            <form>
+                <textarea name="chat-input" id="chat-input" cols="30" rows="2" placeholder="enter to submit"></textarea>
+            </form>
+        </fieldset>
     </fieldset>
     <div id="chat"></div>
     <footer></footer>
