@@ -104,6 +104,10 @@ fieldset,
 .postEntry > * {
     padding: 10px;
 }
+.editEntry {
+    display:none;
+    width: 100%;
+}
 .timeBox {
     background-color: rgba(0, 70, 0, 0.569);
     width: 200px;

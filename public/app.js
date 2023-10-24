@@ -41,23 +41,60 @@ async function getPosts() {
             postEntry.classList.add("postEntry");
             postEntry.appendChild(timeBox);
             postEntry.appendChild(chatBox);
-            deleteEventListener(post, postEntry);
+
+            const editEntry = document.createElement("textarea");
+            editEntry.classList.add("editEntry");
 
             chat.appendChild(postEntry);
+            chat.appendChild(editEntry);
+            editEventListener(post, postEntry, editEntry);
+            deleteEventListener(post, postEntry, editEntry);
         });
     } catch (err) {
         chatForm.placeholder = "Something went wrong. Check back later. ;(";
     }
 }
+function editEventListener(post, postEntry, editEntry) {
+    postEntry.addEventListener("click", () => {
+        if (post.username === currentUser) {
+            editEntry.style.display = "block";
+        }
+    });
+    editEntry.addEventListener("keypress", (e) => {
+        if (e.key === "Enter" && !e.shiftKey && editEntry.value.trim() !== "") {
+            e.preventDefault();
+            editSubmission(post, editEntry);
+            editEntry.style.display = "none";
+        }
+    });
+}
 
-async function deleteEventListener(post, postEntry) {
-    postEntry.addEventListener("click", async () => {
+async function editSubmission(post, editEntry) {
+    try {
+        const message = editEntry.value.trim();
+        await fetch(`/cbbs/${post.id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                message,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+async function deleteEventListener(post, postEntry, editEntry) {
+    postEntry.addEventListener("dblclick", async () => {
         if (post.username === currentUser) {
             try {
                 await fetch(`/cbbs/${post.id}`, {
                     method: "DELETE",
                 });
                 chat.removeChild(postEntry);
+                chat.removeChild(editEntry);
             } catch (err) {
                 console.error(err);
             }
