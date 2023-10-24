@@ -1,16 +1,11 @@
 const chat = document.querySelector("#chat");
 const chatForm = document.querySelector("#chat-input");
+const yourUsername = document.querySelector("#yourUsername");
 const currentUser = await getRandomUser();
 
 getPosts();
 
-chatForm.placeholder = `type and press enter, ${currentUser.slice(0, -6)}`;
-chatForm.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey && chatForm.value.trim() !== "") {
-        e.preventDefault();
-        postSubmission();
-    }
-});
+yourUsername.innerHTML = randomUserColor(currentUser.slice(0));
 
 async function getPosts() {
     try {
@@ -63,6 +58,14 @@ async function getPosts() {
         chatForm.placeholder = "Something went wrong. Check back later. ;(";
     }
 }
+
+chatForm.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey && chatForm.value.trim() !== "") {
+        e.preventDefault();
+        postSubmission();
+    }
+});
+
 function patchPostEventListener(post, postEntry, editInput, editPost) {
     postEntry.addEventListener("click", () => {
         if (post.username === currentUser) {
