@@ -5,7 +5,9 @@ const currentUser = await getRandomUser();
 
 getPosts();
 
-yourUsername.innerHTML = `${randomUserColor(currentUser)} i am your assigned username!`;
+yourUsername.innerHTML = `${randomUserColor(
+    currentUser
+)} i am your assigned username!`;
 
 async function getPosts() {
     try {
@@ -100,7 +102,7 @@ async function patchSubmission(post, editInput) {
     getPosts();
 }
 
-async function deletePostEventListener(post, postEntry, editPost) {
+function deletePostEventListener(post, postEntry, editPost) {
     postEntry.addEventListener("dblclick", async () => {
         if (post.username === currentUser) {
             try {
