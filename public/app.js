@@ -14,7 +14,7 @@ chatForm.addEventListener("keydown", (e) => {
 
 async function getPosts() {
     try {
-        const response = await fetch("/cbbs");
+        const response = await fetch("/nmb");
         const posts = await response.json();
         chat.innerHTML = "";
         posts.forEach((post) => {
@@ -42,37 +42,47 @@ async function getPosts() {
             postEntry.appendChild(timeBox);
             postEntry.appendChild(chatBox);
 
-            const editEntry = document.createElement("textarea");
-            editEntry.classList.add("editEntry");
+            const editInput = document.createElement("textarea");
+            editInput.classList.add("editInput");
+
+            const editTitle = document.createElement("legend");
+            editTitle.textContent = "edit post";
+
+            const editPost = document.createElement("fieldset");
+            editPost.classList.add("editPost");
+            editPost.appendChild(editTitle);
+            editPost.appendChild(editInput);
 
             chat.appendChild(postEntry);
-            chat.appendChild(editEntry);
-            editEventListener(post, postEntry, editEntry);
-            deleteEventListener(post, postEntry, editEntry);
+            chat.appendChild(editPost);
+
+            patchPostEventListener(post, postEntry, editInput, editPost);
+            deletePostEventListener(post, postEntry, editPost);
         });
     } catch (err) {
         chatForm.placeholder = "Something went wrong. Check back later. ;(";
     }
 }
-function editEventListener(post, postEntry, editEntry) {
+function patchPostEventListener(post, postEntry, editInput, editPost) {
     postEntry.addEventListener("click", () => {
         if (post.username === currentUser) {
-            editEntry.style.display = "block";
+            editPost.style.display = "block";
+            editInput.value = post.message;
         }
     });
-    editEntry.addEventListener("keypress", (e) => {
-        if (e.key === "Enter" && !e.shiftKey && editEntry.value.trim() !== "") {
+    editInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter" && !e.shiftKey && editInput.value.trim() !== "") {
             e.preventDefault();
-            editSubmission(post, editEntry);
-            editEntry.style.display = "none";
+            patchSubmission(post, editInput);
+            editPost.style.display = "none";
         }
     });
 }
 
-async function editSubmission(post, editEntry) {
+async function patchSubmission(post, editInput) {
     try {
-        const message = editEntry.value.trim();
-        await fetch(`/cbbs/${post.id}`, {
+        const message = editInput.value.trim();
+        await fetch(`/nmb/${post.id}`, {
             method: "PATCH",
             body: JSON.stringify({
                 message,
@@ -84,17 +94,18 @@ async function editSubmission(post, editEntry) {
     } catch (err) {
         console.error(err);
     }
+    getPosts();
 }
 
-async function deleteEventListener(post, postEntry, editEntry) {
+async function deletePostEventListener(post, postEntry, editPost) {
     postEntry.addEventListener("dblclick", async () => {
         if (post.username === currentUser) {
             try {
-                await fetch(`/cbbs/${post.id}`, {
+                await fetch(`/nmb/${post.id}`, {
                     method: "DELETE",
                 });
                 chat.removeChild(postEntry);
-                chat.removeChild(editEntry);
+                chat.removeChild(editPost);
             } catch (err) {
                 console.error(err);
             }
@@ -105,7 +116,7 @@ async function deleteEventListener(post, postEntry, editEntry) {
 async function postSubmission() {
     const message = chatForm.value.trim();
     try {
-        await fetch("/cbbs", {
+        await fetch("/nmb", {
             method: "POST",
             body: JSON.stringify({
                 currentUser,

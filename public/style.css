@@ -80,12 +80,14 @@ fieldset,
     width: 70%;
     margin: 0;
 }
-#chat-input {
+#chat-input,
+.editInput {
     background-color: rgba(0, 128, 0, 0.279);
     color: lightgreen;
     resize: none;
     width: 100%;
     font-size: 1.2rem;
+    padding-left: 10px;
     border: 0.5px solid green;
 }
 #chat-input::placeholder {
@@ -104,15 +106,17 @@ fieldset,
 .postEntry > * {
     padding: 10px;
 }
-.editEntry {
-    display:none;
+.editPost {
     width: 100%;
+    margin-bottom: 10px;
+}
+.editPost {
+    display: none;
 }
 .timeBox {
     background-color: rgba(0, 70, 0, 0.569);
     width: 200px;
     text-align: right;
-    border-right: 1px solid green;
     border-left: 1px solid green;
 }
 .timeBox p {
@@ -122,6 +126,7 @@ fieldset,
     width: 100%;
     background-color: rgba(0, 48, 0, 0.569);
     border-right: 1px solid green;
+    border-left: 1px solid green;
 }
 #userName {
     font-weight: bold;
@@ -182,7 +187,8 @@ fieldset,
 }
 @media (max-width: 500px) {
     body,
-    #chat-input {
+    #chat-input,
+    .editInput {
         font-size: 1rem;
     }
     .timeBox {
