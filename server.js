@@ -22,7 +22,7 @@ app.post("/nmb", submitPost);
 app.delete("/nmb/:id", deletePost);
 app.patch("/nmb/:id", patchPost);
 
-async function getAllPosts(req, res, next) {
+async function getAllPosts(_, res, next) {
     try {
         const posts = await client.query(
             "SELECT * FROM posts ORDER BY id DESC LIMIT 100"
@@ -58,10 +58,10 @@ async function deletePost(req, res, next) {
 
 async function patchPost(req, res, next) {
     try {
-        await client.query(
-            `UPDATE posts SET message = $1, created_at = CURRENT_TIMESTAMP WHERE id=$2`,
-            [filter.clean(req.body.message), req.params.id]
-        );
+        await client.query(`UPDATE posts SET message = $1 WHERE id=$2`, [
+            filter.clean(req.body.message),
+            req.params.id,
+        ]);
         res.sendStatus(200);
     } catch (err) {
         next(err);
