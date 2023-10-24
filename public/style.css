@@ -102,15 +102,14 @@ fieldset,
     width: 100%;
     font-size: 1.2rem;
     border: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 #chat-input::placeholder {
     opacity: 1;
     color: lightgreen;
     font-family: "Fira Code", monospace;
-}
-#chat-input {
-    margin: 0;
-    height: 100%;
 }
 #chat {
     overflow-y: scroll;
