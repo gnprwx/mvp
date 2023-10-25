@@ -14,19 +14,18 @@
 </head>
 
 <body>
-    <fieldset>
-        <legend>null message board</legend>
-        <img src="./logo.jpg" alt="nbbs logo" id="logo">
+    <fieldset style="background-color: rgba(0, 128, 0, 0.115);">
+        <img src="./logo.png" alt="nbbs logo" id="logo">
         <details>
             <summary>Info</summary>
-            <fieldset style="width: 100%;">
+            <fieldset style="width: 100%; box-shadow: 0 0 5px green">
                 <ul style="font-size:medium;">
                     <li id="yourUsername"></li>
                     <li>click your post(s) to edit or double-click to delete.</li>
                 </ul>
             </fieldset>
         </details>
-        <fieldset style="width: 100%; margin: 0; padding: 0 0 0 10px;">
+        <fieldset id="chatPost">
             <legend>message</legend>
             <form>
                 <textarea name="chat-input" id="chat-input" cols="30" rows="2" placeholder="enter to submit"></textarea>

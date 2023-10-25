@@ -43,7 +43,7 @@ async function getPosts() {
             editInput.classList.add("editInput");
 
             const editTitle = document.createElement("legend");
-            editTitle.textContent = "edit post";
+            editTitle.textContent = "edit";
 
             const editPost = document.createElement("fieldset");
             editPost.classList.add("editPost");

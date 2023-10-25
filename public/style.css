@@ -72,7 +72,7 @@ body {
     background-color: #222;
     color: lightgreen;
     font-size: 1.2rem;
-    height: 100vh;
+    height: 100dvh;
 }
 fieldset {
     border: 1px solid green;
@@ -87,13 +87,26 @@ fieldset,
     margin: 0;
 }
 .editInput {
-    background-color: rgba(0, 128, 0, 0.279);
+    background-color: transparent;
     color: lightgreen;
     resize: none;
     width: 100%;
     font-size: 1.2rem;
-    padding-left: 10px;
-    border: 0.5px solid green;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+#chatPost,
+.editPost {
+    width: 100%;
+    margin: 0;
+    padding: 0 0 0 10px;
+    box-shadow: 0px 0px 5px green;
+}
+.editPost {
+    display: none;
+    margin-bottom:10px;
+    background-color: rgba(0, 128, 0, 0.115)
 }
 #chat-input {
     background-color: transparent;
@@ -104,7 +117,6 @@ fieldset,
     border: none;
     margin: 0;
     padding: 0;
-    height: 100%;
 }
 #chat-input::placeholder {
     opacity: 1;
@@ -117,23 +129,16 @@ fieldset,
 .postEntry {
     display: flex;
     border-bottom: 1px solid green;
-    flex-shrink: 0;
 }
 .postEntry > * {
     padding: 10px;
-}
-.editPost {
-    width: 100%;
-    margin-bottom: 10px;
-}
-.editPost {
-    display: none;
 }
 .timeBox {
     background-color: rgba(0, 70, 0, 0.569);
     width: 200px;
     text-align: right;
     border-left: 1px solid green;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.371);
 }
 .timeBox p {
     margin: 0;
@@ -155,6 +160,19 @@ fieldset,
 }
 #logo {
     width: 100%;
+    animation: glowing 5s infinite;
+}
+
+@keyframes glowing {
+    0% {
+        filter: drop-shadow(0 0 5px rgb(0, 0, 0));
+    }
+    50% {
+        filter: drop-shadow(0 0 5px rgba(163, 255, 163, 0.531));
+    }
+    100% {
+        filter: drop-shadow(0 0 5px rgb(0, 0, 0));
+    }
 }
 
 /* For WebKit-based browsers (Chrome, Safari) */
