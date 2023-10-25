@@ -1,3 +1,30 @@
-# MVP Project
+![logo](https://nullmb.onrender.com/logo.png)
+ 
+ *[null message board](https://nullmb.onrender.com)* is an anonymous message board, utilizing session-unique usernames to write posts.
 
-See it in action here while it's being built: [null message board](https://nullmb.onrender.com/)
+
+## Features
+
+- Visiting the site will generate a session-unique username for you.
+- Create, update, and delete any posts assigned to your unique username.
+- End the session by leaving the site, or refreshing it.
+- Read the most recent 100 posts.
+
+
+## Demo
+
+### create post
+![create post](https://i.ibb.co/XCTBkSw/create-post.gif)
+### edit post (click post)
+![edit post](https://i.ibb.co/FqMFQf9/edit-post.gif)
+### delete post (double-click post)
+![delete post](https://i.ibb.co/kBh5YZV/delete-post.gif)
+## Deployment
+
+[Render](https://render.com) deploys this repo as a web application, which connects to the postgreSQL database also hosted on render.
+
+
+## Authors
+
+- [@gnprwx](https://www.github.com/gnprwx)
+
