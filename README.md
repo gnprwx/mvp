@@ -1,4 +1,4 @@
-![logo]([https://nullmb.onrender.com/logo.png](https://i.ibb.co/bzMpCGN/logo.png))
+![logo](https://i.ibb.co/bzMpCGN/logo.png)
  
  *[null message board](https://nullmb.onrender.com)* is an anonymous message board, utilizing session-unique usernames to write posts.
 
