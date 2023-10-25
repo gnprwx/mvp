@@ -105,8 +105,8 @@ fieldset,
 }
 .editPost {
     display: none;
-    margin-bottom:10px;
-    background-color: rgba(0, 128, 0, 0.115)
+    margin-bottom: 10px;
+    background-color: rgba(0, 128, 0, 0.115);
 }
 #chat-input {
     background-color: transparent;
