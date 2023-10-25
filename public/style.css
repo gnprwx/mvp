@@ -77,6 +77,10 @@ body {
 fieldset {
     border: 1px solid green;
 }
+a {
+    font-weight: bold;
+    color: lightgreen;
+}
 form,
 #chat {
     width: 100%;
@@ -128,7 +132,7 @@ fieldset,
 }
 .postEntry {
     display: flex;
-    border-bottom: 1px solid green;
+    border-top: 1px solid green;
 }
 .postEntry > * {
     padding: 10px;
@@ -161,6 +165,12 @@ fieldset,
 #logo {
     width: 100%;
     animation: glowing 5s infinite;
+}
+footer {
+    background-color: rgb(0, 53, 0);
+    border: 1px solid green;
+    width: 70%;
+    text-align: center;
 }
 
 @keyframes glowing {
@@ -220,7 +230,7 @@ fieldset,
 @media (max-width: 900px) {
     fieldset,
     #chat,
-    #logo {
+    #logo, footer {
         width: 100%;
     }
 }
