@@ -21,7 +21,7 @@
 ![delete post](https://i.ibb.co/kBh5YZV/delete-post.gif)
 ## Deployment
 
-[Render](https://render.com) deploys this repo as a web application, which connects to the postgreSQL database also hosted on render.
+[Render](https://render.com) deploys this repo as a web application, which connects to the postgreSQL database also hosted on render. Due to it being on a free tier, it may take time for it to load.
 
 
 ## Authors
