@@ -1,8 +1,8 @@
 import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
-import BadWordsFilter from "bad-words";
-const filter = new BadWordsFilter();
+import BadWordsNext from "bad-words-next";
+import en from "bad-words-next/data/en.json" assert { type: "json" };
 
 dotenv.config();
 
@@ -11,6 +11,7 @@ const app = express();
 const client = new pg.Client({
     connectionString: DATABASE_URL,
 });
+const badWords = new BadWordsNext({ data: en });
 
 await client.connect();
 
@@ -39,7 +40,7 @@ async function submitPost(req, res, next) {
         await client.query(
             `INSERT INTO posts (username, message, created_at)
         VALUES ($1, $2, CURRENT_TIMESTAMP)`,
-            [currentUser, filter.clean(message)]
+            [currentUser, badWords.filter(message)]
         );
         res.sendStatus(202);
     } catch (err) {
@@ -59,7 +60,7 @@ async function deletePost(req, res, next) {
 async function patchPost(req, res, next) {
     try {
         await client.query(`UPDATE posts SET message = $1 WHERE id=$2`, [
-            filter.clean(req.body.message),
+            badWords.filter(req.body.message),
             req.params.id,
         ]);
         res.sendStatus(200);
