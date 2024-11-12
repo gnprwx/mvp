@@ -1,6 +1,6 @@
 ![logo](https://i.ibb.co/bzMpCGN/logo.png)
  
- *[null message board](https://nullmb.onrender.com)* is an anonymous message board, utilizing session-unique usernames to write posts.
+ *null message board* is an anonymous message board, utilizing session-unique usernames to write posts.
 
 
 ## Features
@@ -22,9 +22,4 @@
 ## Deployment
 
 [Render](https://render.com) deploys this repo as a web application, which connects to the postgreSQL database also hosted on render. Due to it being on a free tier, it may take time for it to load.
-
-
-## Authors
-
-- [@gnprwx](https://www.github.com/gnprwx)
 
